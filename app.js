@@ -5,6 +5,7 @@ const notFound = require("./middlewares/notFound");
 const errorHandler = require("./middlewares/errorHandler");
 require("dotenv").config();
 
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.static("./public"));
@@ -16,7 +17,7 @@ app.use(errorHandler);
 const start = async () => {
 	try {
 		await connectMongo(process.env.MONGO_URI);
-		app.listen(3000, console.log("server started on http://localhost:3000"));
+		app.listen(port, console.log(`server started on http://localhost:${port}`));
 	} catch (error) {
 		console.log(error);
 	}
